@@ -1,30 +1,23 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(void)
 {
-  char str1[100], str2[100], str3[100];
-  int i, j, k;
+  char str1[100], str2[100];
+  int i, j;
 
   scanf("%s", str1);
   scanf("%s", str2);
+
   
   i=0;
   j=0;
-  k=0;
-  while (str1[i] != '\0') {
-    while (str2[j] != '\0') {
-      if(str1[i]=str2[j]) {
-        str3[k]=str1[i];
-        k++;
-        j++;
-      }
-      else j++;
-    }
-    i++;
-  }
-  str3[k] = '\0';
+  
+  for (i = 0; i < strlen(str1); i++)
+    if (strchr(str2, str1[i]) != NULL)
+      putc(str1[i], stdout);
 
-  printf("%s\n", str3);
+
 
   return 0;
 }

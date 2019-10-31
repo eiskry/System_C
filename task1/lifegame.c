@@ -69,6 +69,7 @@ int main(void) {
 
     //scan N
     scanf("%d",&n);
+    
 
 
 

@@ -7,15 +7,20 @@ int main(void)
   int i, j;
 
   //　標準入力から読み込んだ一行をstr1に格納
+  printf("input str1: ");
   scanf("%s", str1);
 
   //　標準入力から読み込んだ次の行をstr2に格納
+  printf("input str2: ");
   scanf("%s", str2);
 
   //　str1とstr2の文字を比較、同じなら出力
+  printf("result: ");
   for (i = 0; i < strlen(str1); i++)
     if (strchr(str2, str1[i]) != NULL)
       putc(str1[i], stdout);
+  
+  printf("\n");
     
   return 0;
 }

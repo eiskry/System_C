@@ -8,7 +8,7 @@ int main(void)
   int i, j, k, n;
 
   scanf("%d", &n);
-  // set A,B,c
+  // 行列A,B,cを初期化
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
       a[i][j] = 0.0;
@@ -17,7 +17,7 @@ int main(void)
     }
   }
 
-  // set A
+  // 行列Aを入力の１つ目の行列とする
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
       scanf("%lf", &a[i][j]);
@@ -26,14 +26,14 @@ int main(void)
 
   scanf("%d", &n);
 
-  // set B
+  // 行列Bを入力の２つ目の行列とする
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
       scanf("%lf", &b[i][j]);
     }
   }
 
-  //print a
+  //　行列Aを表示
   printf("input a");
   printf("\n");
   for (i = 0; i < n; i++) {
@@ -44,7 +44,7 @@ int main(void)
 
   printf("\n");
   
-  // print b
+  // 行列Bを表示
   printf("input b");
   printf("\n");
   for (i = 0; i < n; i++) {
@@ -55,7 +55,7 @@ int main(void)
 
   printf("\n");
 
-  //calculate
+  //　行列AとBの積を計算し、その結果を行列Cとする
    for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
       for (k=0;k<n;k++) {
@@ -65,7 +65,7 @@ int main(void)
   }
 
 
-   // print c
+   // 行列Cを表示
   printf("result");
   printf("\n");
   for (i = 0; i < n; i++) {

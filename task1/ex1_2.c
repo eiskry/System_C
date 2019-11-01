@@ -10,7 +10,7 @@ int main(void)
     printf("input number: ");
     scanf("%[0123456789]", str);
 
-    // reverse string
+    // 逆順出力
     printf("output number: ");
     for (i = 1; i <= strlen(str); i++)
         putc(str[strlen(str) - i], stdout);

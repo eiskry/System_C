@@ -70,7 +70,7 @@ int main(void) {
     //  現在のセルの情報としてtmpを定義する
     for (i = 0; i < v; i++) {
         for (j = 0; j < s; j++) {
-                tmp[i][j]=count[i][j+1];
+            tmp[i][j]=count[i][j+1];
         }    
     }
 
@@ -91,14 +91,13 @@ int main(void) {
     printf("--------------------------");
     printf("\n");
 
-     for (i = 0; i < v; i++) {
-            for (j = 0; j < s; j++) {
-                    future[i][j]=tmp[i][j];
-            }    
-        }
+    for (i = 0; i < v; i++) {
+        for (j = 0; j < s; j++) {
+            future[i][j]=tmp[i][j];
+        }    
+    }
 
     //　G世代目までのシミュレーションの結果を出力する
-
     for (gene=0;gene<n-1;gene++){
 
         //次の世代の情報futureを現在の世代の情報tmpとして更新する
@@ -107,7 +106,6 @@ int main(void) {
                     tmp[i][j]=future[i][j];
             }    
         }
-
         for (int l = 0; l < v ; l++) 
             { 
                 for (int m = 0; m < s ; m++) 
@@ -137,27 +135,24 @@ int main(void) {
                     else
                         future[l][m] = tmp[l][m]; 
                 } 
-            } 
+            }   printf("\n");
 
-     printf("\n");
-
-    //　結果を出力する
-    printf("\n");
-    printf("%dth generation\n",gene+2);
-    printf("\n");
-    for (i = 0; i < v; i++) {
-        for (j = 0; j < s; j++) {
-          if(future[i][j]==1){
-              printf("%c",('O'));
-          } else {
-              printf("%c",('.'));
-          }
-        }     printf("\n");
-    }
-    printf("\n");
-    printf("--------------------------");
-    printf("\n");
-
+        //　結果を出力する
+        printf("\n");
+        printf("%dth generation\n",gene+2);
+        printf("\n");
+        for (i = 0; i < v; i++) {
+            for (j = 0; j < s; j++) {
+                if(future[i][j]==1){
+                    printf("%c",('O'));
+                } else {
+                    printf("%c",('.'));
+                }   
+            }   printf("\n");
+        }
+        printf("\n");
+        printf("--------------------------");
+        printf("\n");
     }
 
     return 0;

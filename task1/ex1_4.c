@@ -117,9 +117,6 @@ int main(void) {
                     for (int i = -1; i <= 1; i++) 
                         for (int j = -1; j <= 1; j++) 
                             aliveNeighbours += tmp[l + i][m + j]; 
-    
-                    // The cell needs to be subtracted from 
-                    // its neighbours as it was counted before 
                     aliveNeighbours -= tmp[l][m]; 
     
                     //　ライフゲームのルールを適用する

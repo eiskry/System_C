@@ -10,42 +10,28 @@ int main(void) {
     char board1[100][100], board2[100][100];
     int count[100][100], tmp[100][100],future[100][100];
 
-    //read board size
+    //　盤面の縦の長さを読み込む
     scanf("%d", &v);
+
+    //　盤面の横の長さを読み込む
     scanf("%d",&s);
 
 
-    //first set board1 for  input format
+    //　すべてのセルが生きているとし、board1として初期化する
     for (i=0;i<v;i++){
         for (j=0;j<2*s;j++){
             board1[i][j]= ('O');
         }
     }
-
-    // //print board1
-    // for (i = 0; i < v; i++) {
-    //     for (j = 0; j < 2*s; j++) {
-    //         printf("%c", board1[i][j]);
-    //     }     printf("\n");
-    // }
     
-    //set board1 for input
+    //　セルの情報を入力に対応させる
     for (i = 0; i < v; i++) {
         for (j = 0; j < 2*s; j++) {
          scanf("%c", &board1[i][j]);
         }
     }
 
-    // //print board1
-    // printf("input");
-    // printf("\n");
-    // for (i = 0; i < v; i++) {
-    //     for (j = 0; j < 2*s; j++) {
-    //         printf("%c", board1[i][j]);
-    //     }     printf("\n");
-    // }
-
-    //delete space to board2
+    //  空白を除いた入力をboard2とする
     i=0;
     j=0;
     k=0;
@@ -61,28 +47,12 @@ int main(void) {
         
     }
 
- 
-    // printf("\n");
-    // printf("--------------------------");
-    // printf("\n");
-
-    // //print board2
-    // printf("0th generation");
-    // printf("\n");
-    // for (i = 0; i < v; i++) {
-    //     for (j = 0; j < k; j++) {
-    //         printf("%c", board2[i][j]);
-    //     }     printf("\n");
-    // }
-    // printf("\n");
-    // printf("--------------------------");
-
-    //scan N
+    //　Nを読み込む
     scanf("%d",&n);
 
     //////////////////////////////////////////////////////////
 
-    //o -> 1, . -> 0
+    //Oを1へ, .を0へと変換する
     for (i = 0; i < v; i++) {
         for (j = 0; j < k; j++) {
             if(board2[i][j]==('O')) {
@@ -97,35 +67,14 @@ int main(void) {
         }
     } 
 
-
-    //set tmp
+    //  現在のセルの情報としてtmpを定義する
     for (i = 0; i < v; i++) {
         for (j = 0; j < s; j++) {
                 tmp[i][j]=count[i][j+1];
         }    
     }
 
-//  printf("\n");
-
-//      for (i = 0; i < v; i++) {
-//         for (j = 0; j < s; j++) {
-//             printf("%d", tmp[i][j]);
-//         }     printf("\n");
-//     }
-
-    // for (i = 0; i < v; i++) {
-    //     for (j = 0; j < s; j++) {
-    //         future[i][j]=tmp[i][j];
-    //     }    
-    // }
-
-    //////////////////////////////////////////////////////////
-
-
-    // for(gene=0;gene<n;gene++) {
-    
-
-    //print 1th generaion
+    //　第一世代の盤面の情報を出力する
     printf("\n");
     printf("1th generation\n");
     printf("\n");
@@ -148,9 +97,11 @@ int main(void) {
             }    
         }
 
+    //　G世代目までのシミュレーションの結果を出力する
+
     for (gene=0;gene<n-1;gene++){
 
-        //future -> tmp
+        //次の世代の情報futureを現在の世代の情報tmpとして更新する
         for (i = 0; i < v; i++) {
             for (j = 0; j < s; j++) {
                     tmp[i][j]=future[i][j];
@@ -161,7 +112,7 @@ int main(void) {
             { 
                 for (int m = 0; m < s ; m++) 
                 { 
-                    // finding no Of Neighbours that are alive 
+                    // 生きている周りのセルを数える
                     int aliveNeighbours = 0; 
                     for (int i = -1; i <= 1; i++) 
                         for (int j = -1; j <= 1; j++) 
@@ -171,21 +122,21 @@ int main(void) {
                     // its neighbours as it was counted before 
                     aliveNeighbours -= tmp[l][m]; 
     
-                    // Implementing the Rules of Life 
+                    //　ライフゲームのルールを適用する
     
-                    // Cell is lonely and dies 
+                    // 過疎
                     if ((tmp[l][m] == 1) && (aliveNeighbours < 2)) 
                         future[l][m] = 0; 
     
-                    // Cell dies due to over population 
+                    // 過密 
                     else if ((tmp[l][m] == 1) && (aliveNeighbours > 3)) 
                         future[l][m] = 0; 
     
-                    // A new cell is born 
+                    // 誕生
                     else if ((tmp[l][m] == 0) && (aliveNeighbours == 3)) 
                         future[l][m] = 1; 
     
-                    // Remains the same 
+                    // 生存
                     else
                         future[l][m] = tmp[l][m]; 
                 } 
@@ -193,13 +144,7 @@ int main(void) {
 
      printf("\n");
 
-    //  for (i = 0; i < v; i++) {
-    //     for (j = 0; j < s; j++) {
-    //         printf("%d", future[i][j]);
-    //     }     printf("\n");
-    // }
-
-    //print result
+    //　結果を出力する
     printf("\n");
     printf("%dth generation\n",gene+2);
     printf("\n");
@@ -217,11 +162,6 @@ int main(void) {
     printf("\n");
 
     }
-
-
-
-    
-
 
     return 0;
 }

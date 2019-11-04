@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     while ((ch = fgetc(fp)) != EOF)
         count++;
 
-    printf("%d characterss\n", count);
+    printf("%d characters\n", count);
     fclose(fp);
 
     return 0;

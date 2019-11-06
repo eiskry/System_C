@@ -28,7 +28,7 @@ void insert_list(int no, char *nam, int pnt)
   q = NULL;
   
   for (p = head; p != NULL; p = p->next) {
-    if (p->point >= pnt) {
+    if (p->point <= pnt) {
       break;
     }
     q = p;
@@ -42,10 +42,12 @@ void insert_list(int no, char *nam, int pnt)
   t->next = p;
 }
 
+
 int main(int argc, char *argv[])
 {
   FILE *fp;
   int nlines, i;
+  int sum,average;
   int no, pnt;
   char nam[256 + 1], buf[1024 + 1];
   struct record *p;
@@ -83,8 +85,19 @@ int main(int argc, char *argv[])
 
   fclose(fp);
 
+  sum=0;
+  //calculate average
+   for (p = head; p != NULL; p = p->next) {
+   sum += p->point;
+  }
+
+  average = sum/nlines;
+  printf("Average: %d\n",average);
+
   for (p = head; p != NULL; p = p->next) {
-    printf("%d %s %d\n", p->number, p->name, p->point);
+      if((p->point)>=average){
+        printf("%d %s %d\n", p->number, p->name, p->point);
+      }
   }
 
   return 0;

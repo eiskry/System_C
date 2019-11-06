@@ -27,8 +27,9 @@ void insert_list(int no, char *nam, int pnt)
 
   q = NULL;
   
+  //compare name
   for (p = head; p != NULL; p = p->next) {
-    if (p->point >= pnt) {
+    if ((strcmp(p->name, nam)) >=0){
       break;
     }
     q = p;

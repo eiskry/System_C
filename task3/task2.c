@@ -3,24 +3,34 @@
 int my_strncasecmp(char *s1, char *s2, int n)
 {
     char c1,c2;
-    int count =0;
-    while (count==n) {
-         while (1) {
-            c1 = *s1;
-            c2 = *s2;
-            if (c1 < c2) {
-            return -1;
-            } else if (c1 > c2) {
-            return 1;
-            } else {
-            if (c1 == '\0') {
-                return 0;
-            }
-            }
-            s1++;
-            s2++;
-            count++;
+    int count;
+
+    count =0;
+    while (count=n){
+        if ('A' <= *s1 && *s1 <= 'Z'){
+            c1 = *s1 - 'A' + 'a';
+        } else {
+            c1=*s1;
         }
+        if ('A' <= *s2 && *s2 <= 'Z'){
+            c2 = *s2 - 'A' + 'a';
+        } else {
+            c2=*s2;
+        }
+
+        if (c1 < c2) {
+            return -1;
+        } else if (c1 > c2) {
+            return 1;
+        } else {
+        if (c1 == '\0') {
+            return 0;
+        }
+        }
+
+        s1++;
+        s2++;
+        count++;
     }
 }
 

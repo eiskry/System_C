@@ -3,18 +3,25 @@
 void calc_sum_max_min(int *sump, int *maxp, int *minp, 
  int *items, int nitems)
 {
-   for(int i=0;i<nitems;i++){
-        *sump=0;
+    //sum
+    *sump=0;
+    for(int i=0;i<nitems;i++){
         *sump = *(items+i) +*sump;
    }
+    
+    *maxp = *items;
+    *minp = *(items+1);
 
+    //max
     for(int i=0;i<nitems;i++){
-
-         if (*(items+i)<*(items+i+1)){
+         if (*maxp<*(items+i)){
             *maxp = *(items+i);
-            *minp = t;
-        } else {
-            *maxp = t;
+        }
+    }
+
+    //min
+    for(int i=0;i<nitems;i++){
+         if (*(items+i)<*minp){
             *minp = *(items+i);
         }
     }

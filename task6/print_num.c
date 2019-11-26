@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include <stdlib.h>
+
 
 int main(int argc, char *argv[]){
     int n;
@@ -8,7 +10,7 @@ int main(int argc, char *argv[]){
             return 0;
     }
     n = atoi(argv[1]);
-    
+
     for(int i=0;i<n;i++){
         printf("1\n");
     }

@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
     N= atoi(argv[2]);
     
     //data1
-    clock_gettime(CLOCK_REALTIME, &ts);
     i=0;
     while (i!=M){
         data1[i]=1;

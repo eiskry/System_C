@@ -22,6 +22,12 @@ void addList()
     head = lp;
 }
 
+struct timespec {
+  time_t tv_sec; /* Seconds.  */
+  long tv_nsec;  /* Nanoseconds.  */
+};
+
+
 int main(int argc, char *argv[])
 {
     int M,N;
@@ -29,11 +35,14 @@ int main(int argc, char *argv[])
     FILE *fp;
     int data1[100000];
     struct data2 *data2;
+    struct timespec ts;
+    struct tm tm;
 
     M= atoi(argv[1]);
     N= atoi(argv[2]);
     
     //data1
+    clock_gettime(CLOCK_REALTIME, &ts);
     i=0;
     while (i!=M){
         data1[i]=1;

@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+//count lines in the file
 int main(int argc, char *argv[])
 {
     int ch, count;

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+//copy file
 int main(int argc, char *argv[])
 {
   int ch, n, count;

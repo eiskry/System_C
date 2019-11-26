@@ -12,7 +12,7 @@ int main(int argc, char *argv[]){
     n = atoi(argv[1]);
 
     for(int i=0;i<n;i++){
-        printf("1\n");
+        printf("2\n");
     }
 
     return 0;

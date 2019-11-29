@@ -67,48 +67,20 @@ int search_tree(int x, struct node *p)
   }
 }
 
-int count=0;
+
  /* Implement by yourself */
    int count_nodes(struct node *p)
   {
-   struct node *nd;
-   
-  if (p == NULL) {
-    if ((nd = (struct node *)malloc(sizeof(struct node))) == NULL) {
-      fprintf(stderr, "Out of memory\n");
-      exit(1);
+      int c =  1;             //Node itself should be counted
+    if (p ==NULL)
+        return 0;
+    else
+    {
+        c += count_nodes(p->left);
+        c += count_nodes(p->right);
+        return c;
     }
-    nd->left = NULL;
-    nd->right = NULL;
-    count++;
-    return count;
   }
-  if (p->left==NULL){
-    return count;
-  } else {
-         count=count+1;
-         count_nodes(p->left);
-    }
-   if (p->right==NULL){
-    return count;
-  } else{
-        count=count+1;
-        count_nodes(p->right); 
-        }
-  }
-//     if (p == NULL) {
-//     return count;
-//   } else {
-//     if (p->left != NULL) {
-//       count_tree(p->left);
-//       count++;
-//     }
-//     if (p->right != NULL) {
-//       count_tree(p->right);
-//       count++;
-//     }
-//   }
-
 
 void free_tree(struct node *p)
 {

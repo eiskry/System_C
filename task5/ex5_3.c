@@ -1,98 +1,152 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-typedef struct trie {
-  struct trie *array[256];
-} trie_t;
+struct node {
+  int data;
+  struct node *left;
+  struct node *right;
+};
 
-void init_trie(trie_t *ptr)
+struct node *insert_data(int x, struct node *p)
 {
-  int i;
-  for (i = 0; i < 256; ++i) {
-    ptr->array[i] = NULL;
+  struct node *nd;
+  if (p == NULL) {
+    if ((nd = (struct node *)malloc(sizeof(struct node))) == NULL) {
+      fprintf(stderr, "Out of memory\n");
+      exit(1);
+    }
+    nd->data = x;
+    nd->left = NULL;
+    nd->right = NULL;
+    return nd;
   }
-  return;
+
+  if (x == p->data) {
+    return p;
+  } else if (x < p->data) {
+    p->left = insert_data(x, p->left);
+    return p;
+  } else {
+    p->right = insert_data(x, p->right);
+    return p;
+  }
 }
 
-trie_t *new_trie(void)
+void print_tree(struct node *p)
 {
-  trie_t *ptr;
-
-  if ((ptr = malloc(sizeof(trie_t))) == NULL) {
-    fprintf(stderr, "Out of memory\n");
-    exit(1);
-  }
-  init_trie(ptr);
-
-  return ptr;
-}
-
-void add_to_trie(char *str, trie_t *ptr)
-{
-  unsigned char c;
-  if (strlen(str) == 0) {
-    ptr->array['.'] = new_trie();
+  if (p == NULL) {
     return;
   }
 
-  c = *str;
-  if (ptr->array[c] == NULL) {
-    ptr->array[c] = new_trie();
+  print_tree(p->left);
+  printf("%d\n", p->data);
+  print_tree(p->right);
+}
+
+ /* Implement by yourself */
+int search_tree(int x, struct node *p)
+{
+   struct node *nd;
+  if (p == NULL) {
+    if ((nd = (struct node *)malloc(sizeof(struct node))) == NULL) {
+      fprintf(stderr, "Out of memory\n");
+      exit(1);
+    }
+    nd->data = x;
+    nd->left = NULL;
+    nd->right = NULL;
+    return 0;
   }
 
-  add_to_trie(str + 1, ptr->array[c]);
+  if (x == p->data) {
+    return 1;
+  } else if (x < p->data) {
+    search_tree(x, p->left);
+  } else {
+    search_tree(x, p->right);
+  }
 }
 
-trie_t *find_in_trie(char *str, trie_t *ptr)
-{
-  /* Implement by yourself */
-}
 
-void free_trie(trie_t *ptr)
-{
-  int i;
-  for (i = 0; i < 256; ++i) {
-    if (ptr->array[i] != NULL) {
-      free_trie(ptr->array[i]);
+ /* Implement by yourself */
+   int count_nodes(struct node *p)
+  {
+      int c =  1;             //Node itself should be counted
+    if (p ==NULL)
+        return 0;
+    else
+    {
+        c += count_nodes(p->left);
+        c += count_nodes(p->right);
+        return c;
     }
   }
-  free(ptr);
+
+void free_tree(struct node *p)
+{
+  if (p == NULL) {
+    return;
+  } else {
+    if (p->left != NULL) {
+      free_tree(p->left);
+    }
+    if (p->right != NULL) {
+      free_tree(p->right);
+    }
+    free(p);
+  }
 }
 
 int main(int argc, char *argv[])
 {
-  FILE *f;
-  char str[512];
-  trie_t *root;
+  FILE *fp;
+  int i, x;
+  struct node *root = NULL;
 
-  if (argc != 3) {
-    fprintf(stderr, "Missing argument\n");
+  if (argc != 2) {
+    fprintf(stderr, "Missing file argument\n");
     exit(1);
   }
 
-  if ((f = fopen(argv[1], "r")) == NULL) {
+  if ((fp = fopen(argv[1], "r")) == NULL) {
     fprintf(stderr, "Can't open %s\n", argv[1]);
     exit(1);
   }
 
-  root = new_trie();
-  while (fgets(str, 512, f)) {
-    if (str[strlen(str) - 1] == '\n') {
-      str[strlen(str) - 1] = '\0';
+  for (i = 0; i < 100; i++) {
+    if (fscanf(fp, "%d", &x) != 1) {
+      fprintf(stderr, "Can't read data\n");
+      exit(1);
     }
-    add_to_trie(str, root);
+    if (x <= 0) {
+      fprintf(stderr, "Invalid data: %d\n", x);
+      exit(1);
+    }
+    root = insert_data(x, root);
   }
 
-  fclose(f);
+  fclose(fp);
 
-  if (find_in_trie(argv[2], root) != NULL) {
-    printf("%s: \"%s\" is found in %s\n", argv[0], argv[2], argv[1]);
-  } else {
-    printf("%s: \"%s\" is not found in %s\n", argv[0], argv[2], argv[1]);
+  print_tree(root);
+  printf("%d numbers read\n", count_nodes(root));
+
+  while (1) {
+    printf("Input number ");
+    if (scanf("%d", &x) == EOF) {
+      fprintf(stderr, "Can't read input\n");
+      exit(1);
+    }
+    if (x <= 0) {
+      break;
+    }
+    if (search_tree(x, root) == 1) {
+      printf("%d: Found\n", x);
+    } else {
+      printf("%d: Not found\n", x);
+    }
   }
 
-  free_trie(root);
+  free_tree(root);
 
   return 0;
 }

@@ -15,13 +15,20 @@ int main(int argc, char *argv[])
     int m,n,r,tmp;
 
     if (argc != 3) {
-            printf("Usage: %s <number 1> <number 2>¥n", argv[0]);
+            printf("Invalid input.\n");
             return 0;
     }
   
     m = atoi(argv[1]);
+    if (m == 0){
+     printf("Invalid input.\n");
+            return 0;
+    }
     n = atoi(argv[2]);
-    
+    if (n == 0){
+     printf("Invalid input.\n");
+            return 0;
+    }
     if(m<n){
         tmp=m;
         m=n;

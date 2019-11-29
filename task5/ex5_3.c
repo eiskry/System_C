@@ -43,43 +43,15 @@ void print_tree(struct node *p)
   print_tree(p->right);
 }
 
- /* Implement by yourself */
-int search_tree(int x, struct node *p)
-{
-   struct node *nd;
-  if (p == NULL) {
-    if ((nd = (struct node *)malloc(sizeof(struct node))) == NULL) {
-      fprintf(stderr, "Out of memory\n");
-      exit(1);
-    }
-    nd->data = x;
-    nd->left = NULL;
-    nd->right = NULL;
-    return 0;
-  }
-
-  if (x == p->data) {
-    return 1;
-  } else if (x < p->data) {
-    search_tree(x, p->left);
-  } else {
-    search_tree(x, p->right);
-  }
-}
-
-
- /* Implement by yourself */
-   int count_nodes(struct node *p)
+int add_nodes(struct node *p){        
+  int rightsubtree, leftsubtree, sum=0;
+  if (p != NULL)
   {
-      int c =  1;             //Node itself should be counted
-    if (p ==NULL)
-        return 0;
-    else
-    {
-        c += count_nodes(p->left);
-        c += count_nodes(p->right);
-        return c;
-    }
+    leftsubtree=add_nodes(p->left);
+    rightsubtree=add_nodes(p->right);
+    sum=(p->data)+leftsubtree+rightsubtree;
+    return sum;
+  }
   }
 
 void free_tree(struct node *p)
@@ -128,23 +100,7 @@ int main(int argc, char *argv[])
   fclose(fp);
 
   print_tree(root);
-  printf("%d numbers read\n", count_nodes(root));
-
-  while (1) {
-    printf("Input number ");
-    if (scanf("%d", &x) == EOF) {
-      fprintf(stderr, "Can't read input\n");
-      exit(1);
-    }
-    if (x <= 0) {
-      break;
-    }
-    if (search_tree(x, root) == 1) {
-      printf("%d: Found\n", x);
-    } else {
-      printf("%d: Not found\n", x);
-    }
-  }
+  printf("SUM: %d\n", add_nodes(root));
 
   free_tree(root);
 

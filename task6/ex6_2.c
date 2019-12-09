@@ -86,18 +86,27 @@ int sum_of_digits(int x)
   return sum;
 }
 
-  /* not yet implemented */
 void map_func(int (*f)(int))
 {
-  (*f)();
-  return;	  
+  struct record *p;
+  for (p = head; p != NULL; p = p->next) {
+    p->number = (*f) (p->number);
+  }
+  return;
 }
-	  
-  /* not yet implemented */
+
 int choose_best(int (*f)(int))
 {
-  (*f)();
-  return 0;
+  int num = 0;
+  struct record *p;
+  for (p = head; p != NULL; p = p->next) {
+    if ((*f) (p->number) > (*f) (num)) {
+      num = p->number;
+    } else if ((*f) (p->number) == (*f) (num) && p->number > num) {
+      num = p->number;
+    }
+  }
+  return num;
 }
 
 int main(int argc, char *argv[])

@@ -47,6 +47,9 @@ int main(int argc, char *argv[])
   }
 
   switch (f) {
+   case 0:
+    printf("\n");
+    break;   
    case 1:
     printf("one\n");
     break;    

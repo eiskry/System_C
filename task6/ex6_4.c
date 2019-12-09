@@ -22,13 +22,6 @@ void addList()
     head = lp;
 }
 
-struct timespec {
-  time_t tv_sec; /* Seconds.  */
-  long tv_nsec;  /* Nanoseconds.  */
-};
-
-
-
 int main(int argc, char *argv[])
 {
     int M,N;
@@ -37,37 +30,59 @@ int main(int argc, char *argv[])
     FILE *fp;
     int data1[100000];
     struct data2 *data2;
-    struct timespec ts;
-    struct tm tm;
+    
+    clock_t start,end;
 
     M= atoi(argv[1]);
     N= atoi(argv[2]);
     
-    //data1
+    //make data1
+    start=clock();
     i=0;
     while (i!=M){
         data1[i]=1;
         i++;
     }
+    end=clock();
+    printf("Make the Array: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
     // data1 until i-1 
+  
 
-    //add data1
+    //calcu data1
+    start=clock();
     for (j=0;j<N;j++){
       sum1=0;
       for (i=0;i<M;i++){
         sum1+=data1[i];      
       }
     }
+    end=clock();
+    printf("Calculate the Array: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
 
-    //data2
+    //make data2
+    start=clock();
     j=0;
    for (j=0; j != M;j+1) {
     addList();
     j++;
   }
+  end = clock();
+    printf("Make the List: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
 
-  //add data2
-  
+  //calcu data2
+  start=clock();
+  for(i=0;i<N;i++){
+    sum2=0;
+    for(data2=head;data2!=NULL;data2=data2->next){
+      sum2+=data2->number;
+    }
+  }
+  end = clock();
+  printf("Calculate the Array: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
+
+
+  printf("%d",sum1);
+  printf("%d",sum2);
 
     return 0;
 }

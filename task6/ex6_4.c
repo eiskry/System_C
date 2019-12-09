@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
     int M,N;
     int i,j;
     int sum1,sum2;
-    FILE *fp;
-    int data1[100000];
+    int *data1;
+    data1=(int *)malloc(sizeof(int)*10000000);
     struct data2 *data2;
     
     clock_t start,end;
@@ -59,6 +59,13 @@ int main(int argc, char *argv[])
     end=clock();
     printf("Calculate the Array: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
 
+    //release data1
+    start=clock();
+    free(data1);
+    end= clock();
+    printf("Release the Array: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
+
+
     //make data2
     start=clock();
     j=0;
@@ -80,9 +87,17 @@ int main(int argc, char *argv[])
   end = clock();
   printf("Calculate the Array: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
 
+  //release data2
+   start=clock();
+    free(data2);
+    end= clock();
+    printf("Release the List: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
 
-  printf("%d",sum1);
-  printf("%d",sum2);
+
+
+  printf("S of array is %d\n",sum1);
+  printf("S of list is %d\n",sum2);
+
 
     return 0;
 }

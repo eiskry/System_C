@@ -64,8 +64,9 @@ int main(int argc, char *argv[])
     free(data1);
     end= clock();
     printf("Release the Array: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
-
-  printf("\n");
+    printf("S of array is %d\n",sum1);
+  
+    printf("\n");
 
     //make data2
     start=clock();
@@ -93,11 +94,7 @@ int main(int argc, char *argv[])
     free(data2);
     end= clock();
     printf("Release the List: %.4fseconds\n",(double)(end-start)/CLOCKS_PER_SEC);
-
-  printf("\n");
-  
-  printf("S of array is %d\n",sum1);
-  printf("S of list is %d\n",sum2);
+    printf("S of list is %d\n",sum2);
 
 
     return 0;

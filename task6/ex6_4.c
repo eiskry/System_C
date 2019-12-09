@@ -28,10 +28,12 @@ struct timespec {
 };
 
 
+
 int main(int argc, char *argv[])
 {
     int M,N;
     int i,j;
+    int sum1,sum2;
     FILE *fp;
     int data1[100000];
     struct data2 *data2;
@@ -49,12 +51,23 @@ int main(int argc, char *argv[])
     }
     // data1 until i-1 
 
+    //add data1
+    for (j=0;j<N;j++){
+      sum1=0;
+      for (i=0;i<M;i++){
+        sum1+=data1[i];      
+      }
+    }
+
     //data2
     j=0;
    for (j=0; j != M;j+1) {
     addList();
     j++;
   }
+
+  //add data2
+  
 
     return 0;
 }

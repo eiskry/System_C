@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
-void overflow(char *buf)
+void replace_message(char *buf)
 {
-  char *s = "1234567890123456789012345678fUD3";
-  strcpy(buf, s);
+  char input[256];
+  if (fgets(input, 256, stdin) == NULL) {
+    return;
+  }
+  strcpy(buf, input);
 }
 
 int main(void)
@@ -12,21 +15,23 @@ int main(void)
   char buf1[10], buf2[10], buf3[10];
   int z = 0x12345678;
 
-  strcpy(buf1, "Hello");
-  strcpy(buf2, "safe");
-  strcpy(buf3, "world");
+  strcpy(buf1, "Hello\n");
+  strcpy(buf2, "safe\n");
+  strcpy(buf3, "world\n");
 
-  puts(buf1);
-  puts(buf2);
-  puts(buf3);
-  printf("z = %08x\n", z);
+  printf("%s", buf1);
+  printf("%s", buf2);
+  printf("%s", buf3);
+  printf("Your ID=0x%08x\n", z);
 
-  overflow(buf2);
+  printf("Input? ");
+  fflush(stdout);
+  replace_message(buf2);
 
-  puts(buf1);
-  puts(buf2);
-  puts(buf3);
-  printf("z = %08x\n", z);
+  printf("%s", buf1);
+  printf("%s", buf2);
+  printf("%s", buf3);
+  printf("Your ID=0x%08x\n", z);
 
   return 0;
 }

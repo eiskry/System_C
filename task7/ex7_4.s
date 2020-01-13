@@ -5,9 +5,9 @@
         .globl main
 main:   mov $0,%eax
         mov $0,%ebx
-L1:     cmp $0,a(,%ebx,4)
+    L1: cmp $0,a(,%ebx,4)
             je L2
         add a(,%ebx,4),%eax
         add $1,%ebx
             jmp L1
-L2: call finish
+    L2: call finish

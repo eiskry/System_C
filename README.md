@@ -1,6 +1,7 @@
 # System_C
 システムプログラミング
-System Programming with C
+System Programming
 
-低レイヤープログラミング
+C言語
+
 アセンブリ言語

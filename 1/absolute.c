@@ -7,6 +7,6 @@ int main(void) {
         printf("Input is negative\n");
         x = -x;
     }
-    printf("Absolute number si %d\n", x);
+    printf("Absolute number is %d\n", x);
     return 0;
 }

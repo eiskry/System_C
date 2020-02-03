@@ -11,38 +11,45 @@ main:
   mov $0, %esi
 
   add x(,%esi,4), %edx
-  add y(,%esi,4), %edx
-  jc  L0
+  sub y(,%esi,4), %edx
+  js  L0  # negative
   jmp L00
 
 L00:
   add $1, %esi
   add x(,%esi,4), %ecx
-  add y(,%esi,4), %ecx
-  jc  L1
+  sub y(,%esi,4), %ecx
+  js  L1 # negative
   jmp L10
 
 L10:
   add $1, %esi
   add x(,%esi,4), %ebx
-  add y(,%esi,4), %ebx
-  jc  L2
+  sub y(,%esi,4), %ebx
+  js  L2
   jmp L20
 
 L20:
   add $1, %esi
   add x(,%esi,4), %eax
-  add y(,%esi,4), %eax
+  sub y(,%esi,4), %eax
   call finish
 
+
+# negative
 L0:
-	add $1, %ecx
+  add $0xffffffff, %edx
+	sub $1, %ecx
   jmp L00
 
+# negative
 L1:
-	add $1, %ebx
+  add $0xffffffff, %ecx
+  sub $1, %ebx
   jmp L10
 
+# negative
 L2:
-	add $1, %eax
+	add $0xffffffff, %ebx
+  sub $1, %eax
   jmp L20

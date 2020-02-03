@@ -12,11 +12,12 @@ main:
 
   add x(,%esi,4), %edx
   add y(,%esi,4), %edx
-  jc  L0
-  jmp L00
+  add $1, %esi
+  add x(,%esi,4), %edx
+  add y(,%esi,4), %edx
 
 L00:
-  add $1, %esi
+ 
   add x(,%esi,4), %ecx
   add y(,%esi,4), %ecx
   jc  L1

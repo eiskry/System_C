@@ -9,40 +9,27 @@ main:
   mov $0, %ebx
   mov $0, %eax
   mov $0, %esi
+  mov $0, %edi
 
   add x(,%esi,4), %edx
-  add y(,%esi,4), %edx
-  jc  L0
-  jmp L00
-
-L00:
   add $1, %esi
   add x(,%esi,4), %ecx
-  add y(,%esi,4), %ecx
-  jc  L1
-  jmp L10
-
-L10:
   add $1, %esi
   add x(,%esi,4), %ebx
-  add y(,%esi,4), %ebx
-  jc  L2
-  jmp L20
-
-L20:
   add $1, %esi
   add x(,%esi,4), %eax
-  add y(,%esi,4), %eax
-  call finish
+  sub $3, %esi
 
-L0:
-	add $1, %ecx
-  jmp L00
+  add y(,%esi,4), %edi
+  cmp %edx, %edi
+    ja L1
+  sub %edi, %edx
+  jmp L01
+
+L01:
+    neg edi
+    add $0x7fffffff, %edi
+    add %edi, %edx
+    sub $1, %ecx
 
 L1:
-	add $1, %ebx
-  jmp L10
-
-L2:
-	add $1, %eax
-  jmp L20

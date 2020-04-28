@@ -1,0 +1,68 @@
+﻿学籍番号：201811319
+氏名：永崎遼太
+演習番号：６
+
+課題１を実行した結果を以下に示す。
+$ ./ex6_1 21
+twenty one
+$ ./ex6_1 30
+thirty 
+$ ./ex6_1 66
+sixty six
+$ ./ex6_1 90
+ninty 
+$ ./ex6_1 0
+Invalid argument: 0
+$ ./ex6_1 100
+Invalid argument: 100
+
+
+課題２を実行した結果を以下に示す。
+$ ./ex6_2 ./ex6_data.txt
+[8614, 6295, 9333, 1596, 6019, 36, 2982, 4802, 1948, 769, 3662, 6056, 1281, 4582, 3156, 1007, 4794, 7209, 3282, 5901]
+Best value under standard 1: 9333
+best value under standard 2: 1596
+best value under standard 3: 4794
+[8615, 6296, 9334, 1597, 6020, 37, 2983, 4803, 1949, 770, 3663, 6057, 1282, 4583, 3157, 1008, 4795, 7210, 3283, 5902]
+[-8615, -6296, -9334, -1597, -6020, -37, -2983, -4803, -1949, -770, -3663, -6057, -1282, -4583, -3157, -1008, -4795, -7210, -3283, -5902]
+[-25845, -18888, -28002, -4791, -18060, -111, -8949, -14409, -5847, -2310, -10989, -18171, -3846, -13749, -9471, -3024, -14385, -21630, -9849, -17706]
+[25845, 18888, 28002, 4791, 18060, 111, 8949, 14409, 5847, 2310, 10989, 18171, 3846, 13749, 9471, 3024, 14385, 21630, 9849, 17706]
+[1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0]
+
+
+課題３を実行した結果を以下に示す。
+$ ./ex6_3 
+Hello
+safe
+world
+Your ID=0x12345678
+Input? wfUDwfUDwfUDwfUDwfUDwfUDwfUD
+UDwfUDwfUDwfUDwfUD
+wfUDwfUDwfUDwfUDwfUDwfUDwfUD
+world
+Your ID=0x44556677
+
+
+課題４を実行した結果を以下に示す。
+$ ./ex6_4 1000000 1
+Make the Array: 0.0115seconds
+Calculate the Array: 0.0033seconds
+Release the Array: 0.0002seconds
+S of array is 1000000
+
+Make the List: 0.0403seconds
+Calculate the Array: 0.0053seconds
+Release the List: 0.0000seconds
+S of list is 1000000
+
+$ ./ex6_4 1000000 10000
+Make the Array: 0.0112seconds
+Calculate the Array: 31.7795seconds
+Release the Array: 0.0003seconds
+S of array is 1000000
+
+Make the List: 0.0391seconds
+Calculate the Array: 52.1045seconds
+Release the List: 0.0000seconds
+S of list is 1000000
+
